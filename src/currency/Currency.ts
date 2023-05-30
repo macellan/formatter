@@ -1,3 +1,4 @@
+import { CurrencyCode } from './Currency.constants'
 import { CurrencyOptions } from './Currency.types'
 
 export default class Currency {
@@ -7,7 +8,7 @@ export default class Currency {
     this.options = options
   }
 
-  public static getSymbol(code: string) {
+  public static getSymbol(code: CurrencyCode) {
     let currencySymbol
 
     const parts = new Intl.NumberFormat(undefined, {
@@ -25,7 +26,7 @@ export default class Currency {
     return currencySymbol
   }
 
-  protected formatInltCurrency(code: string) {
+  protected formatInltCurrency(code: CurrencyCode) {
     return new Intl.NumberFormat(this.options.locale, {
       style: 'currency',
       currency: code,
@@ -33,11 +34,11 @@ export default class Currency {
     })
   }
 
-  public format(amount: number, code: string) {
+  public format(amount: number, code: CurrencyCode) {
     return this.formatInltCurrency(code).format(amount)
   }
 
-  public formatToDetails(amount: number, code: string) {
+  public formatToDetails(amount: number, code: CurrencyCode) {
     const formatter = this.formatInltCurrency(code)
 
     const parts = formatter.formatToParts(amount)
