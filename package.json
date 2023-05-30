@@ -1,0 +1,52 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {},
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "@altpay/formatter",
+  "author": "Onur Özkaya",
+  "module": "dist/altpay-formatter.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/altpay-formatter.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/altpay-formatter.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "@size-limit/preset-small-lib": "^8.2.4",
+    "lefthook": "^1.4.1",
+    "size-limit": "^8.2.4",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.5.2",
+    "typescript": "^5.0.4"
+  }
+}
