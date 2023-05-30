@@ -7,6 +7,24 @@ export default class Currency {
     this.options = options
   }
 
+  public static getSymbol(code: string) {
+    let currencySymbol
+
+    const parts = new Intl.NumberFormat(undefined, {
+      style: 'currency',
+      currency: code,
+      currencyDisplay: 'narrowSymbol',
+    }).formatToParts(1)
+
+    parts.forEach(part => {
+      if (part.type === 'currency') {
+        currencySymbol = part.value
+      }
+    })
+
+    return currencySymbol
+  }
+
   protected formatInltCurrency(code: string) {
     return new Intl.NumberFormat(this.options.locale, {
       style: 'currency',
