@@ -1,3 +1,2 @@
-export const sum = (a: number, b: number) => {
-  return a + b;
-};
+export { default as CurrencyFormatter } from './currency/Currency';
+export * from './currency/Currency.types';
