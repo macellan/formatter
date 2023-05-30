@@ -1,2 +1,2 @@
-export { default as CurrencyFormatter } from './currency/Currency';
-export * from './currency/Currency.types';
+export { default as CurrencyFormatter } from './currency/Currency'
+export * from './currency/Currency.types'
