@@ -9,5 +9,18 @@ module.exports = {
       version: '999.999.999',
     },
   },
-  rules: {},
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        quoteProps: 'consistent',
+        singleQuote: true,
+        semi: false,
+        tabWidth: 2,
+        trailingComma: 'es5',
+        useTabs: false,
+        arrowParens: 'avoid',
+      },
+    ],
+  },
 };

@@ -1,10 +1,10 @@
-import { CurrencyOptions } from './Currency.types';
+import { CurrencyOptions } from './Currency.types'
 
 export default class Currency {
-  protected options: CurrencyOptions;
+  protected options: CurrencyOptions
 
   constructor(options: CurrencyOptions) {
-    this.options = options;
+    this.options = options
   }
 
   protected formatInltCurrency(code: string) {
@@ -12,40 +12,41 @@ export default class Currency {
       style: 'currency',
       currency: code,
       currencyDisplay: 'narrowSymbol',
-    });
+    })
   }
 
   public format(amount: number, code: string) {
-    return this.formatInltCurrency(code).format(amount);
+    return this.formatInltCurrency(code).format(amount)
   }
 
   public formatToDetails(amount: number, code: string) {
-    const formatter = this.formatInltCurrency(code);
+    const formatter = this.formatInltCurrency(code)
 
-    const parts = formatter.formatToParts(amount);
+    const parts = formatter.formatToParts(amount)
 
     const result = {
       symbol: '',
       digid: '',
       text: '',
-    };
+      parts: parts,
+    }
 
     parts.forEach(part => {
       if (part.type === 'currency') {
-        result.symbol = part.value;
-        return;
+        result.symbol = part.value
+        return
       }
 
       if (part.type === 'fraction' && part.value === '00') {
-        result.digid = result.digid.slice(0, -1);
-        return;
+        result.digid = result.digid.slice(0, -1)
+        return
       }
 
-      result.digid += part.value;
-    });
+      result.digid += part.value
+    })
 
-    result.text = result.symbol + result.digid;
+    result.text = result.symbol + result.digid
 
-    return result;
+    return result
   }
 }
