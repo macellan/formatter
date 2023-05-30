@@ -9,7 +9,5 @@ module.exports = {
       version: '999.999.999',
     },
   },
-  rules: {
-    'no-console': 'error',
-  },
+  rules: {},
 };

@@ -1,7 +1,15 @@
-import { sum } from '../src';
+import { CurrencyFormatter } from '../src';
 
-describe('blah', () => {
+describe('Currency Formatter', () => {
   it('works', () => {
-    expect(sum(1, 1)).toEqual(2);
+    const Formatter = new CurrencyFormatter({
+      locale: 'tr-TR',
+    });
+
+    expect(Formatter.formatToDetails(1000, 'TRY')).toEqual({
+      symbol: '₺',
+      text: '₺1,000.00',
+      digid: '1.000',
+    });
   });
 });

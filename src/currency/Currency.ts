@@ -7,23 +7,31 @@ export default class Currency {
     this.options = options;
   }
 
-  public format(amount: number, code: string) {
-    const formatter = new Intl.NumberFormat(this.options.locale, {
+  protected formatInltCurrency(code: string) {
+    return new Intl.NumberFormat(this.options.locale, {
       style: 'currency',
       currency: code,
       currencyDisplay: 'narrowSymbol',
     });
+  }
+
+  public format(amount: number, code: string) {
+    return this.formatInltCurrency(code).format(amount);
+  }
+
+  public formatToDetails(amount: number, code: string) {
+    const formatter = this.formatInltCurrency(code);
 
     const parts = formatter.formatToParts(amount);
 
     const result = {
       symbol: '',
-      text: '',
       digid: '',
+      text: '',
     };
 
     parts.forEach(part => {
-      if (part.type === 'symbol') {
+      if (part.type === 'currency') {
         result.symbol = part.value;
         return;
       }
