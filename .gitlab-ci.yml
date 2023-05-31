@@ -1,0 +1,15 @@
+image: node:18-slim
+
+stages:
+  - test
+
+test:
+  stage: test
+  script:
+    - yarn install
+    - yarn lint
+    - yarn test
+  tags:
+    - docker_runner
+  only:
+    - merge_requests
