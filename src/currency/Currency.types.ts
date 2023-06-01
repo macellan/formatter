@@ -1,5 +1,8 @@
-import { Locale } from './Currency.constants'
+import {
+  Locale as CoreLocale,
+  CurrencyCode as CoreCurrencyCode,
+} from 'simple-currency-format'
 
-export interface CurrencyOptions {
-  locale: Locale
-}
+export type Locale = CoreLocale
+
+export type CurrencyCode = CoreCurrencyCode | 'TL'

@@ -1,71 +1,43 @@
-import { CurrencyCode } from './Currency.constants'
-import { CurrencyOptions } from './Currency.types'
+import { currencyFormat, getCurrencySymbol } from 'simple-currency-format'
 
-export default class Currency {
-  protected options: CurrencyOptions
+import { CurrencyCode, Locale } from './Currency.types'
 
-  constructor(options: CurrencyOptions) {
-    this.options = options
+const formatCode = (code: CurrencyCode) => (code === 'TL' ? 'TRY' : code)
+
+const format = (
+  amount: number,
+  locale: Locale,
+  code: CurrencyCode,
+  decimal: number | undefined = 2
+) => {
+  return currencyFormat(amount, locale, formatCode(code), decimal)
+}
+
+const getSymbol = (code: CurrencyCode) => {
+  return getCurrencySymbol(formatCode(code))
+}
+
+const formatToDetails = (
+  amount: number,
+  locale: Locale,
+  code: CurrencyCode,
+  decimal: number | undefined = 2
+) => {
+  const formatted = format(amount, locale, code, decimal)
+
+  const result = {
+    symbol: getSymbol(code),
+    digid: '',
+    text: formatted,
   }
 
-  public static getSymbol(code: CurrencyCode) {
-    let currencySymbol
+  result.digid = formatted.replace(result.symbol, '').trim()
 
-    const parts = new Intl.NumberFormat(undefined, {
-      style: 'currency',
-      currency: code,
-      currencyDisplay: 'narrowSymbol',
-    }).formatToParts(1)
+  return result
+}
 
-    parts.forEach(part => {
-      if (part.type === 'currency') {
-        currencySymbol = part.value
-      }
-    })
-
-    return currencySymbol
-  }
-
-  protected formatInltCurrency(code: CurrencyCode) {
-    return new Intl.NumberFormat(this.options.locale, {
-      style: 'currency',
-      currency: code,
-      currencyDisplay: 'narrowSymbol',
-    })
-  }
-
-  public format(amount: number, code: CurrencyCode) {
-    return this.formatInltCurrency(code).format(amount)
-  }
-
-  public formatToDetails(amount: number, code: CurrencyCode) {
-    const formatter = this.formatInltCurrency(code)
-
-    const parts = formatter.formatToParts(amount)
-
-    const result = {
-      symbol: '',
-      digid: '',
-      text: '',
-      parts: parts,
-    }
-
-    parts.forEach(part => {
-      if (part.type === 'currency') {
-        result.symbol = part.value
-        return
-      }
-
-      if (part.type === 'fraction' && part.value === '00') {
-        result.digid = result.digid.slice(0, -1)
-        return
-      }
-
-      result.digid += part.value
-    })
-
-    result.text = result.symbol + result.digid
-
-    return result
-  }
+export default {
+  format,
+  getSymbol,
+  formatToDetails,
 }
