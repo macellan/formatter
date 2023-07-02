@@ -16,7 +16,7 @@ module.exports = {
         quoteProps: 'consistent',
         singleQuote: true,
         semi: false,
-        tabWidth: 2,
+        tabWidth: 4,
         trailingComma: 'es5',
         useTabs: false,
         arrowParens: 'avoid',

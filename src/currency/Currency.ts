@@ -5,39 +5,39 @@ import { CurrencyCode, Locale } from './Currency.types'
 const formatCode = (code: CurrencyCode) => (code === 'TL' ? 'TRY' : code)
 
 const format = (
-  amount: number,
-  locale: Locale,
-  code: CurrencyCode,
-  decimal: number | undefined = 2
+    amount: number,
+    locale: Locale,
+    code: CurrencyCode,
+    decimal: number | undefined = 2
 ) => {
-  return currencyFormat(amount, locale, formatCode(code), decimal)
+    return currencyFormat(amount, locale, formatCode(code), decimal)
 }
 
 const getSymbol = (code: CurrencyCode) => {
-  return getCurrencySymbol(formatCode(code))
+    return getCurrencySymbol(formatCode(code))
 }
 
 const formatToDetails = (
-  amount: number,
-  locale: Locale,
-  code: CurrencyCode,
-  decimal: number | undefined = 2
+    amount: number,
+    locale: Locale,
+    code: CurrencyCode,
+    decimal: number | undefined = 2
 ) => {
-  const formatted = format(amount, locale, code, decimal)
+    const formatted = format(amount, locale, code, decimal)
 
-  const result = {
-    symbol: getSymbol(code),
-    digid: '',
-    text: formatted,
-  }
+    const result = {
+        symbol: getSymbol(code),
+        digid: '',
+        text: formatted,
+    }
 
-  result.digid = formatted.replace(result.symbol, '').trim()
+    result.digid = formatted.replace(result.symbol, '').trim()
 
-  return result
+    return result
 }
 
 export default {
-  format,
-  getSymbol,
-  formatToDetails,
+    format,
+    getSymbol,
+    formatToDetails,
 }
