@@ -19,7 +19,7 @@ const Issuers: CardIssuer[] = [
         groupPattern: /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?(\d{1,3})?/,
         digits: 16,
         maxLength: 19,
-        cvcLength: 4,
+        cvcLength: 3,
     },
     {
         name: 'mastercard',
