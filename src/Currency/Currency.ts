@@ -1,6 +1,6 @@
 import { currencyFormat, getCurrencySymbol } from 'simple-currency-format'
 
-import { CurrencyCode, Locale } from './Currency.types'
+import { CurrencyCode, Locale } from './Types'
 
 const formatCode = (code: CurrencyCode) => (code === 'TL' ? 'TRY' : code)
 
