@@ -6,7 +6,7 @@ export default class CreditCard {
     }
 
     public static getIssuer = (value: string) => {
-        const text = this.clear(value)
+        const text = CreditCard.clear(value)
 
         return CreditCardConstants.Issuers.find(issuer =>
             issuer.simplePattern.test(text)
@@ -14,9 +14,9 @@ export default class CreditCard {
     }
 
     public static format = (value: string) => {
-        const text = this.clear(value)
+        const text = CreditCard.clear(value)
 
-        const issuer = this.getIssuer(text)
+        const issuer = CreditCard.getIssuer(text)
         if (!issuer) return text
         return text.replace(issuer.groupPattern, (_, ...groups) => {
             let formatted = groups[0]
