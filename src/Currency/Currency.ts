@@ -2,42 +2,49 @@ import { currencyFormat, getCurrencySymbol } from 'simple-currency-format'
 
 import { CurrencyCode, Locale } from './Types'
 
-const formatCode = (code: CurrencyCode) => (code === 'TL' ? 'TRY' : code)
-
-const format = (
-    amount: number,
-    locale: Locale,
-    code: CurrencyCode,
-    decimal: number | undefined = 2
-) => {
-    return currencyFormat(amount, locale, formatCode(code), decimal)
-}
-
-const getSymbol = (code: CurrencyCode) => {
-    return getCurrencySymbol(formatCode(code))
-}
-
-const formatToDetails = (
-    amount: number,
-    locale: Locale,
-    code: CurrencyCode,
-    decimal: number | undefined = 2
-) => {
-    const formatted = format(amount, locale, code, decimal)
-
-    const result = {
-        symbol: getSymbol(code),
-        digid: '',
-        text: formatted,
+export default class CurrencyFormatter {
+    public static format = (
+        amount: number,
+        locale: Locale,
+        code: CurrencyCode,
+        decimal: number | undefined = 2
+    ) => {
+        return currencyFormat(
+            amount,
+            locale,
+            CurrencyFormatter.formatCode(code),
+            decimal
+        )
     }
 
-    result.digid = formatted.replace(result.symbol, '').trim()
+    public static formatCode = (code: CurrencyCode) =>
+        code === 'TL' ? 'TRY' : code
 
-    return result
-}
+    public static getSymbol = (code: CurrencyCode) => {
+        return getCurrencySymbol(CurrencyFormatter.formatCode(code))
+    }
 
-export default {
-    format,
-    getSymbol,
-    formatToDetails,
+    public static formatToDetails = (
+        amount: number,
+        locale: Locale,
+        code: CurrencyCode,
+        decimal: number | undefined = 2
+    ) => {
+        const formatted = CurrencyFormatter.format(
+            amount,
+            locale,
+            code,
+            decimal
+        )
+
+        const result = {
+            symbol: CurrencyFormatter.getSymbol(code),
+            digid: '',
+            text: formatted,
+        }
+
+        result.digid = formatted.replace(result.symbol, '').trim()
+
+        return result
+    }
 }

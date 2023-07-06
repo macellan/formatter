@@ -1,56 +1,59 @@
 {
-  "name": "@altpay/formatter",
-  "author": "Onur Özkaya",
-  "module": "dist/formatter.esm.js",
-  "version": "0.0.1",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "publishConfig": {
-    "@altpay:registry": "https://git.macellan.net/api/v4/projects/437/packages/npm/"
-  },
-  "homepage": "https://git.macellan.net/altpay/mobile/altpay-formatter#readme",
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "jest",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
-  },
-  "peerDependencies": {},
-  "size-limit": [
-    {
-      "path": "dist/formatter.cjs.production.min.js",
-      "limit": "10 KB"
+    "name": "@altpay/formatter",
+    "author": "Onur Özkaya",
+    "module": "dist/formatter.esm.js",
+    "version": "0.0.1",
+    "license": "MIT",
+    "main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": ">=10"
     },
-    {
-      "path": "dist/formatter.esm.js",
-      "limit": "10 KB"
+    "publishConfig": {
+        "@altpay:registry": "https://git.macellan.net/api/v4/projects/437/packages/npm/"
+    },
+    "homepage": "https://git.macellan.net/altpay/mobile/altpay-formatter#readme",
+    "scripts": {
+        "start": "tsdx watch",
+        "build": "tsdx build",
+        "test": "jest",
+        "lint": "tsdx lint",
+        "prepare": "tsdx build",
+        "size": "size-limit",
+        "analyze": "size-limit --why"
+    },
+    "peerDependencies": {
+        "dayjs": "*"
+    },
+    "size-limit": [
+        {
+            "path": "dist/formatter.cjs.production.min.js",
+            "limit": "10 KB"
+        },
+        {
+            "path": "dist/formatter.esm.js",
+            "limit": "10 KB"
+        }
+    ],
+    "devDependencies": {
+        "@commitlint/cli": "^17.6.5",
+        "@commitlint/config-conventional": "^17.6.5",
+        "@jest/globals": "^29.5.0",
+        "@size-limit/preset-small-lib": "^8.2.4",
+        "dayjs": "^1.11.9",
+        "jest": "^29.5.0",
+        "lefthook": "^1.4.1",
+        "size-limit": "^8.2.4",
+        "ts-jest": "^29.1.0",
+        "tsdx": "^0.14.1",
+        "tslib": "^2.5.2",
+        "typescript": "^5.0.4"
+    },
+    "dependencies": {
+        "simple-currency-format": "^2.4.0"
     }
-  ],
-  "devDependencies": {
-    "@commitlint/cli": "^17.6.5",
-    "@commitlint/config-conventional": "^17.6.5",
-    "@jest/globals": "^29.5.0",
-    "@size-limit/preset-small-lib": "^8.2.4",
-    "jest": "^29.5.0",
-    "lefthook": "^1.4.1",
-    "size-limit": "^8.2.4",
-    "ts-jest": "^29.1.0",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.5.2",
-    "typescript": "^5.0.4"
-  },
-  "dependencies": {
-    "simple-currency-format": "^2.4.0"
-  }
 }
