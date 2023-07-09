@@ -1,6 +1,5 @@
 import NumberFormatter from '../Number/Number'
 import CreditCardConstants from './Constants'
-import { CardIssuer } from './Types'
 
 export default class CreditCardFormatter {
     private static trim = (value: string) => {
@@ -11,14 +10,8 @@ export default class CreditCardFormatter {
         return NumberFormatter.format(value)
     }
 
-    public static validate = (
-        issuerName: CardIssuer['name'],
-        value: string
-    ) => {
-        const issuer = CreditCardConstants.Issuers.find(
-            element => element.name === issuerName
-        )
-
+    public static validate = (value: string) => {
+        const issuer = CreditCardFormatter.getIssuer(value)
         const rawValue = CreditCardFormatter.trim(value)
 
         return issuer ? issuer.pattern.test(rawValue) : false
@@ -46,7 +39,7 @@ export default class CreditCardFormatter {
                     : false
             })
 
-            return formatted
+            return formatted.slice(0, issuer.maxLength)
         })
     }
 }
