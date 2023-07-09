@@ -3,7 +3,7 @@ import CreditCardConstants from './Constants'
 
 export default class CreditCardFormatter {
     private static trim = (value: string) => {
-        return value.replaceAll(' ', '')
+        return value.replace(/\s/g, '')
     }
 
     public static getRawValue = (value: string) => {
