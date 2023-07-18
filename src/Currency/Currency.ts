@@ -3,20 +3,6 @@ import { currencyFormat, getCurrencySymbol } from 'simple-currency-format'
 import { CurrencyCode, Locale } from './Types'
 
 export default class CurrencyFormatter {
-    public static format = (
-        amount: number,
-        locale: Locale,
-        code: CurrencyCode,
-        decimal: number | undefined = 2
-    ) => {
-        return currencyFormat(
-            amount,
-            locale,
-            CurrencyFormatter.formatCode(code),
-            decimal
-        )
-    }
-
     public static formatCode = (code: CurrencyCode) =>
         code === 'TL' ? 'TRY' : code
 
@@ -30,10 +16,10 @@ export default class CurrencyFormatter {
         code: CurrencyCode,
         decimal: number | undefined = 2
     ) => {
-        const formatted = CurrencyFormatter.format(
+        const formatted = currencyFormat(
             amount,
             locale,
-            code,
+            CurrencyFormatter.formatCode(code),
             decimal
         )
 
@@ -46,5 +32,21 @@ export default class CurrencyFormatter {
         result.digid = formatted.replace(result.symbol, '').trim()
 
         return result
+    }
+
+    public static format = (
+        amount: number,
+        locale: Locale,
+        code: CurrencyCode,
+        decimal: number | undefined = 2
+    ) => {
+        const details = CurrencyFormatter.formatToDetails(
+            amount,
+            locale,
+            code,
+            decimal
+        )
+
+        return details.text + details.digid
     }
 }
