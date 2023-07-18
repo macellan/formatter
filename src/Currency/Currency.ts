@@ -47,6 +47,6 @@ export default class CurrencyFormatter {
             decimal
         )
 
-        return details.text + details.digid
+        return details.symbol + details.digid
     }
 }
