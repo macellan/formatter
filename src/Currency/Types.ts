@@ -1,8 +1,3 @@
-import {
-    Locale as CoreLocale,
-    CurrencyCode as CoreCurrencyCode,
-} from 'simple-currency-format'
+export type Locale = string
 
-export type Locale = CoreLocale
-
-export type CurrencyCode = CoreCurrencyCode | 'TL'
+export type CurrencyCode = string

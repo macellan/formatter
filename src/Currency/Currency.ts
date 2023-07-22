@@ -1,4 +1,4 @@
-import { currencyFormat, getCurrencySymbol } from 'simple-currency-format'
+import currencyFormat from 'currency-formatter'
 
 import { CurrencyCode, Locale } from './Types'
 
@@ -7,21 +7,30 @@ export default class CurrencyFormatter {
         code === 'TL' ? 'TRY' : code
 
     public static getSymbol = (code: CurrencyCode) => {
-        return getCurrencySymbol(CurrencyFormatter.formatCode(code))
+        return currencyFormat.findCurrency(CurrencyFormatter.formatCode(code))
+            ?.symbol as string
+    }
+
+    public static getRawValue = (
+        formatted: string,
+        locale: Locale,
+        code: CurrencyCode
+    ) => {
+        return currencyFormat.unformat(formatted, {
+            locale: locale,
+            code: CurrencyFormatter.formatCode(code),
+        })
     }
 
     public static formatToDetails = (
         amount: number,
         locale: Locale,
-        code: CurrencyCode,
-        decimal: number | undefined = 2
+        code: CurrencyCode
     ) => {
-        const formatted = currencyFormat(
-            amount,
-            locale,
-            CurrencyFormatter.formatCode(code),
-            decimal
-        )
+        const formatted = currencyFormat.format(amount, {
+            code: CurrencyFormatter.formatCode(code),
+            locale: locale,
+        })
 
         const result = {
             symbol: CurrencyFormatter.getSymbol(code),
@@ -29,7 +38,9 @@ export default class CurrencyFormatter {
             text: formatted,
         }
 
-        result.digid = formatted.replace(result.symbol, '').trim()
+        result.digid = formatted
+            .replace((result.symbol as unknown) as string, '')
+            .trim()
 
         return result
     }
@@ -37,16 +48,9 @@ export default class CurrencyFormatter {
     public static format = (
         amount: number,
         locale: Locale,
-        code: CurrencyCode,
-        decimal: number | undefined = 2
+        code: CurrencyCode
     ) => {
-        const details = CurrencyFormatter.formatToDetails(
-            amount,
-            locale,
-            code,
-            decimal
-        )
-
+        const details = CurrencyFormatter.formatToDetails(amount, locale, code)
         return details.symbol + details.digid
     }
 }
