@@ -11,6 +11,17 @@ export default class CurrencyFormatter {
             ?.symbol as string
     }
 
+    public static getLocaleSeparators = (locale: Locale) => {
+        const formattedNumber = (1000.1).toLocaleString(locale)
+
+        const separators = {
+            separator: formattedNumber.charAt(1),
+            decimal: formattedNumber.charAt(formattedNumber.length - 2),
+        }
+
+        return separators
+    }
+
     public static getRawValue = (
         formatted: string,
         locale: Locale,
