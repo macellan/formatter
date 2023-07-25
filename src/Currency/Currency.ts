@@ -38,9 +38,9 @@ export default class CurrencyFormatter {
         locale: Locale,
         code: CurrencyCode
     ) => {
-        const formatted = currencyFormat.format(amount, {
-            code: CurrencyFormatter.formatCode(code),
-            locale: locale,
+        const formatted = amount.toLocaleString(locale, {
+            minimumFractionDigits: Number.isInteger(amount) ? 0 : 2,
+            maximumFractionDigits: 2,
         })
 
         const result = {
