@@ -22,6 +22,10 @@ export default class CurrencyFormatter {
         return separators
     }
 
+    private static formatToPositive(digid: string) {
+        return digid.replace('-', '')
+    }
+
     public static getRawValue = (
         formatted: string,
         locale: Locale,
@@ -62,6 +66,13 @@ export default class CurrencyFormatter {
         code: CurrencyCode
     ) => {
         const details = CurrencyFormatter.formatToDetails(amount, locale, code)
+
+        if (amount < 0) {
+            return `-${details.symbol}${CurrencyFormatter.formatToPositive(
+                details.digid
+            )}`
+        }
+
         return details.symbol + details.digid
     }
 }
