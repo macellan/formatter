@@ -4,7 +4,6 @@
     "module": "dist/formatter.esm.js",
     "version": "1.0.0",
     "license": "MIT",
-    "private": "false",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
     "files": [
@@ -21,6 +20,7 @@
         "test": "jest",
         "lint": "tsdx lint",
         "prepare": "tsdx build",
+        "prepack": "yarn build",
         "size": "size-limit",
         "analyze": "size-limit --why",
         "release": "release-it"
