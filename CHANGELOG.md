@@ -1,5 +1,12 @@
 
 
+# [1.1.0](https://github.com/macellan/formatter/compare/v1.0.0...v1.1.0) (2024-03-14)
+
+
+### Features
+
+* **CreditCard:** add support for Discover issuer ([52e89c6](https://github.com/macellan/formatter/commit/52e89c627a66318b1090613a93e65b40d386d5ee))
+
 # [1.0.0](https://github.com/macellan/formatter/compare/0.0.12...1.0.0) (2024-03-14)
 
 
