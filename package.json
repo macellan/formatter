@@ -13,6 +13,10 @@
     "engines": {
         "node": ">=10"
     },
+    "publishConfig": {
+        "access": "public",
+        "registry": "https://registry.npmjs.org"
+    },
     "homepage": "https://github.com/macellan/formatter",
     "scripts": {
         "start": "tsdx watch",
