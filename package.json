@@ -22,7 +22,8 @@
         "lint": "tsdx lint",
         "prepare": "tsdx build",
         "size": "size-limit",
-        "analyze": "size-limit --why"
+        "analyze": "size-limit --why",
+        "release": "release-it"
     },
     "peerDependencies": {
         "dayjs": "*"
@@ -41,11 +42,13 @@
         "@commitlint/cli": "^17.6.5",
         "@commitlint/config-conventional": "^17.6.5",
         "@jest/globals": "^29.5.0",
+        "@release-it/conventional-changelog": "^8.0.1",
         "@size-limit/preset-small-lib": "^8.2.4",
         "@types/currency-formatter": "^1.5.1",
         "dayjs": "^1.11.9",
         "jest": "^29.5.0",
         "lefthook": "^1.4.1",
+        "release-it": "^17.1.1",
         "size-limit": "^8.2.4",
         "ts-jest": "^29.1.0",
         "tsdx": "^0.14.1",
