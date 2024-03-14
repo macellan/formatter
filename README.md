@@ -1,1 +1,1 @@
-# Altpay Formatter
+# Macellan Formatter

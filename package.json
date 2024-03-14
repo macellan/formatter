@@ -1,9 +1,10 @@
 {
-    "name": "@altpay/formatter",
+    "name": "@macellan/formatter",
     "author": "Onur Özkaya",
     "module": "dist/formatter.esm.js",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "license": "MIT",
+    "private": "false",
     "main": "dist/index.js",
     "typings": "dist/index.d.ts",
     "files": [
@@ -13,10 +14,7 @@
     "engines": {
         "node": ">=10"
     },
-    "publishConfig": {
-        "@altpay:registry": "https://git.macellan.net/api/v4/projects/437/packages/npm/"
-    },
-    "homepage": "https://git.macellan.net/altpay/mobile/altpay-formatter#readme",
+    "homepage": "https://github.com/macellan/formatter",
     "scripts": {
         "start": "tsdx watch",
         "build": "tsdx build",
