@@ -32,6 +32,16 @@ const Issuers: CardIssuer[] = [
         cvcLength: 3,
     },
     {
+        name: 'discover',
+        title: 'Discover',
+        pattern: /^(6011|65\d{2}|64[4-9]\d)\d{12,15}$/,
+        simplePattern: /^(6011|64[4-9]|65)/,
+        groupPattern: /(\d{1,4})(\d{1,4})?(\d{1,4})?(\d{1,4})?(\d{1,3})?/,
+        digits: 16,
+        maxLength: 19,
+        cvcLength: 3,
+    },
+    {
         name: 'troy',
         title: 'Troy',
         pattern: /^9792\d{12}$/,
