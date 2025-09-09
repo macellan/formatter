@@ -17,6 +17,24 @@ export default class CreditCardFormatter {
         return issuer ? issuer.pattern.test(rawValue) : false
     }
 
+    public static validateWithLuhn(value: string) {
+        const c = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
+        const rawValue = CreditCardFormatter.trim(value)
+
+        let e: number
+        let r: number = rawValue.length
+        let n: number = 1
+        let o: number = 0
+
+        while (r) {
+            e = parseInt(rawValue.charAt(--r), 10)
+            n = n ^ 1
+            o += n ? c[e] : e
+        }
+
+        return !!(o && o % 10 === 0)
+    }
+
     public static getIssuer = (value: string) => {
         const text = CreditCardFormatter.getRawValue(value)
 
