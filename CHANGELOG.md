@@ -1,5 +1,12 @@
 
 
+# [1.2.0](https://github.com/macellan/formatter/compare/v1.1.0...v1.2.0) (2025-09-09)
+
+
+### Features
+
+* **CreditCard:** add validateWithLuhn method ([b2923d7](https://github.com/macellan/formatter/commit/b2923d7471f5e64b09dfc9704fe329fe516070aa))
+
 # [1.1.0](https://github.com/macellan/formatter/compare/v1.0.0...v1.1.0) (2024-03-14)
 
 
